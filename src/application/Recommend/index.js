@@ -5,6 +5,8 @@ import * as actionTypes from './store/actionCreators';
 import RecommendList from "../../components/list";
 import { Content } from './style';
 import Scroll from '../../baseUI/scroll';
+import { forceCheck } from 'react-lazyload';
+import Loading from '../../baseUI/loading/index';
 
 const Recommend = (props) => {
 
@@ -21,13 +23,14 @@ const Recommend = (props) => {
 
   return (
     <Content>
-      <Scroll className="list">
+      <Scroll className="list" onScroll={forceCheck}>
         <div>
           <Slider bannerList={bannerListJS}></Slider>
           <RecommendList recommendList={recommendListJS}></RecommendList>
         </div>
       </Scroll>
       <div className="before"></div>
+      <Loading></Loading>
     </Content> 
   );
 };
